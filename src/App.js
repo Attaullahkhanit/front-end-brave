@@ -15,7 +15,6 @@ function App() {
   );
 
   useEffect(() => {
-    // Update localStorage when userAuthenticated changes
     localStorage.setItem("userAuthenticated", userAuthenticated);
   }, [userAuthenticated]);
   return (
@@ -29,7 +28,6 @@ function App() {
             element={<SignInPage setUserAuthenticated={setUserAuthenticated} />}
           />
           <Route path="/signup" element={<SignUpPage />} />
-          {/* weather app pages */}
           <Route
             path="/home"
             element={
