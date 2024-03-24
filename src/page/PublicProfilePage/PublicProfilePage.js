@@ -7,6 +7,7 @@ import {
   Typography,
   Card,
   CardContent,
+  Grid,
 } from "@mui/material";
 import {
   AiOutlineUser,
@@ -19,6 +20,7 @@ import { FaUser, FaMap } from "react-icons/fa";
 import { BiSolidCity } from "react-icons/bi";
 import { GiVillage } from "react-icons/gi";
 import { useLocation } from "react-router-dom";
+import GoogleMapContainer from "../../components/GoogleMapContainer/GoogleMapContainer";
 
 const PublicProfilePage = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -58,6 +60,7 @@ const PublicProfilePage = () => {
           />
         </Box>
         <Tabs value={tabValue} onChange={handleChange} centered>
+          <Tab icon={<FaMap size={32} />} />
           <Tab icon={<AiOutlineUser size={32} />} />
           <Tab icon={<AiOutlineMail size={32} />} />
           <Tab icon={<AiOutlineHome size={32} />} />
@@ -67,7 +70,6 @@ const PublicProfilePage = () => {
           <Tab icon={<FaUser size={32} />} />
           <Tab icon={<GiVillage size={32} />} />
           <Tab icon={<BiSolidCity size={32} />} />
-          <Tab icon={<FaMap size={32} />} />
         </Tabs>
         <Box
           sx={{
@@ -78,11 +80,16 @@ const PublicProfilePage = () => {
           }}
         >
           {tabValue === 0 && (
-            <Typography variant="body1">
-              User Name: {userData.name.title}
-              {userData.name.first}
-              {userData.name.last}
-            </Typography>
+            <>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={12}>
+                  <GoogleMapContainer
+                    latitude={userData.location.coordinates.latitude}
+                    longitude={userData.location.coordinates.longitude}
+                  />
+                </Grid>
+              </Grid>
+            </>
           )}
           {tabValue === 1 && (
             <Typography variant="body1">Email: {userData.email}</Typography>
@@ -125,8 +132,9 @@ const PublicProfilePage = () => {
           )}
           {tabValue === 9 && (
             <Typography variant="body1">
-              Location: Latitude {userData.location.coordinates.latitude},{" "}
-              {userData.location.coordinates.longitude}
+              User Name: {userData.name.title}
+              {userData.name.first}
+              {userData.name.last}
             </Typography>
           )}
         </Box>

@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import "./styles.scss";
 
+
 function UserTable({ apiData }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -126,7 +127,7 @@ function UserTable({ apiData }) {
                 <TableCell>
                   <img src={data.picture?.thumbnail} alt="Dummy Image" />
                 </TableCell>
-                <TableCell>{data.name.first}</TableCell>
+                <TableCell>{data.name?.first}</TableCell>
                 <TableCell>{data.email}</TableCell>
                 <TableCell>{data.gender}</TableCell>
                 <TableCell>{data.cell}</TableCell>
